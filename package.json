@@ -1,0 +1,20 @@
+{
+  "name": "flash-deal-comparator",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w server && npm run build -w client",
+    "typecheck": "npm run typecheck -w server && npm run typecheck -w client",
+    "setup:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
