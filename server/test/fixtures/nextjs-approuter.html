@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Modern Shop — App Router</title></head>
+<body>
+  <!-- Phase 2 target: Next.js App Router streams data via __next_f flight
+       payloads — there is NO __NEXT_DATA__ element at all. -->
+  <div id="root">
+    <div class="zqx9"><span>Sony WH-1000XM5 Wireless Headphones</span><span>৳32,500</span></div>
+    <div class="zqx9"><span>Bose SoundLink Flex Speaker</span><span>৳15,900</span></div>
+  </div>
+  <script>
+  self.__next_f = self.__next_f || [];
+  self.__next_f.push([1, "0:{\"buildId\":\"abc123\"}\n"]);
+  self.__next_f.push([1, "3:{\"products\":[{\"name\":\"Sony WH-1000XM5 Wireless Headphones\",\"salePrice\":32500,\"regularPrice\":38000,\"image\":\"https://modernshop.test/img/xm5.jpg\",\"slug\":\"sony-wh-1000xm5\"},{\"name\":\"Bose SoundLink Flex Speaker\",\"salePrice\":15900,\"regularPrice\":18900,\"image\":\"https://modernshop.test/img/flex.jpg\",\"slug\":\"bose-soundlink-flex\"}]}\n"]);
+  </script>
+</body>
+</html>

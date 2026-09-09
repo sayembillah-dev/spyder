@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Pickaboo — Mobile Phones</title></head>
+<body>
+  <main>
+    <ul class="products columns-4">
+      <!-- WooCommerce-flavoured nested cards: li.product matches .product,
+           inner divs match [class*="product-"] — innermost-first must win -->
+      <li class="product type-product">
+        <div class="product-one__single">
+          <div class="product-one__single__inner">
+            <a href="https://pickaboo.test/product/samsung-galaxy-a15/">
+              <img src="https://pickaboo.test/img/a15.jpg" alt="Samsung Galaxy A15">
+            </a>
+            <h2 class="woocommerce-loop-product__title">Samsung Galaxy A15 (6/128GB)</h2>
+            <span class="price">
+              <del><span class="woocommerce-Price-amount amount"><bdi>৳22,999</bdi></span></del>
+              <ins><span class="woocommerce-Price-amount amount"><bdi>৳18,499</bdi></span></ins>
+            </span>
+          </div>
+        </div>
+      </li>
+      <li class="product type-product">
+        <div class="product-one__single">
+          <div class="product-one__single__inner">
+            <a href="https://pickaboo.test/product/xiaomi-redmi-note-13/">
+              <img src="https://pickaboo.test/img/note13.jpg" alt="Xiaomi Redmi Note 13">
+            </a>
+            <h2 class="woocommerce-loop-product__title">Xiaomi Redmi Note 13 (8/256GB)</h2>
+            <span class="price">
+              <del><span class="woocommerce-Price-amount amount"><bdi>৳27,999</bdi></span></del>
+              <ins><span class="woocommerce-Price-amount amount"><bdi>৳23,999</bdi></span></ins>
+            </span>
+            <span class="discount-badge">-14%</span>
+          </div>
+        </div>
+      </li>
+      <!-- card whose ONLY price is the struck-through original:
+           the strike must not be picked, but the card must not vanish -->
+      <li class="product type-product">
+        <div class="product-one__single">
+          <div class="product-one__single__inner">
+            <a href="https://pickaboo.test/product/realme-c65/">
+              <img src="https://pickaboo.test/img/c65.jpg" alt="Realme C65">
+            </a>
+            <h2 class="woocommerce-loop-product__title">Realme C65 (6/128GB)</h2>
+            <span class="price">
+              <del><span class="woocommerce-Price-amount amount"><bdi>৳19,999</bdi></span></del>
+            </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </main>
+</body>
+</html>

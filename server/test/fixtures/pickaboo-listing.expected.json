@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Samsung Galaxy A15 (6/128GB)",
+    "originalPrice": 22999,
+    "dealPrice": 18499,
+    "discountPercentage": 20,
+    "currency": "BDT",
+    "sourceSite": "pickaboo-listing",
+    "productUrl": "https://pickaboo.test/product/samsung-galaxy-a15/",
+    "imageUrl": "https://pickaboo.test/img/a15.jpg"
+  },
+  {
+    "title": "Xiaomi Redmi Note 13 (8/256GB)",
+    "originalPrice": 27999,
+    "dealPrice": 23999,
+    "discountPercentage": 14,
+    "currency": "BDT",
+    "sourceSite": "pickaboo-listing",
+    "productUrl": "https://pickaboo.test/product/xiaomi-redmi-note-13/",
+    "imageUrl": "https://pickaboo.test/img/note13.jpg"
+  },
+  {
+    "title": "Realme C65 (6/128GB)",
+    "originalPrice": null,
+    "dealPrice": 19999,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "pickaboo-listing",
+    "productUrl": "https://pickaboo.test/product/realme-c65/",
+    "imageUrl": "https://pickaboo.test/img/c65.jpg"
+  }
+]

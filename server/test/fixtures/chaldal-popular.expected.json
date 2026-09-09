@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Fresh Guard Full Cream Milk 1L",
+    "originalPrice": 110,
+    "dealPrice": 95,
+    "discountPercentage": 14,
+    "currency": "BDT",
+    "sourceSite": "chaldal-popular",
+    "productUrl": "https://chaldal-popular.test/product/fresh-guard-milk-1l",
+    "imageUrl": "https://cdn.chaldal.test/img/milk.jpg"
+  },
+  {
+    "title": "Rupchanda Soybean Oil 5L",
+    "originalPrice": 4750,
+    "dealPrice": 4250,
+    "discountPercentage": 11,
+    "currency": "BDT",
+    "sourceSite": "chaldal-popular",
+    "productUrl": "https://chaldal-popular.test/product/rupchanda-soybean-oil-5l",
+    "imageUrl": "https://cdn.chaldal.test/img/oil.jpg"
+  },
+  {
+    "title": "Premium Miniket Rice 5 kg",
+    "originalPrice": null,
+    "dealPrice": 420,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "chaldal-popular",
+    "productUrl": "https://chaldal-popular.test/product/miniket-rice-5kg",
+    "imageUrl": "https://cdn.chaldal.test/img/rice.jpg"
+  },
+  {
+    "title": "Dettol Original Soap 100 gm",
+    "originalPrice": 65,
+    "dealPrice": 55,
+    "discountPercentage": 15,
+    "currency": "BDT",
+    "sourceSite": "chaldal-popular",
+    "productUrl": "https://chaldal-popular.test/product/dettol-soap-100g",
+    "imageUrl": "https://cdn.chaldal.test/img/soap.jpg"
+  }
+]

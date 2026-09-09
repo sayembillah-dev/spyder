@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Sony WH-1000XM5 Wireless Headphones",
+    "originalPrice": 38000,
+    "dealPrice": 32500,
+    "discountPercentage": 14,
+    "currency": "BDT",
+    "sourceSite": "nextjs-approuter",
+    "productUrl": "https://nextjs-approuter.test/sony-wh-1000xm5",
+    "imageUrl": "https://modernshop.test/img/xm5.jpg"
+  },
+  {
+    "title": "Bose SoundLink Flex Speaker",
+    "originalPrice": 18900,
+    "dealPrice": 15900,
+    "discountPercentage": 16,
+    "currency": "BDT",
+    "sourceSite": "nextjs-approuter",
+    "productUrl": "https://nextjs-approuter.test/bose-soundlink-flex",
+    "imageUrl": "https://modernshop.test/img/flex.jpg"
+  }
+]

@@ -6,15 +6,16 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "start": "tsx src/index.ts",
-    "build": "tsc --noEmit",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "fixture:capture": "tsx scripts/capture-fixture.ts"
   },
   "dependencies": {
     "axios": "^1.7.0",
     "cheerio": "^1.0.0",
     "cors": "^2.8.5",
-    "crawlee": "^3.0.0",
     "express": "^4.21.0",
+    "ipaddr.js": "^1.9.1",
     "playwright": "^1.40.0",
     "string-similarity": "^4.0.4"
   },
@@ -24,6 +25,7 @@
     "@types/node": "^22.0.0",
     "@types/string-similarity": "^4.0.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0",
+    "vitest": "^5.0.0"
   }
 }

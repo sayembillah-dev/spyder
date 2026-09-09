@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Trailblazer Hiking Backpack 40L",
+    "originalPrice": null,
+    "dealPrice": 2950,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "jsonld-shopify",
+    "productUrl": "https://acme-outdoor.test/products/trailblazer-40l",
+    "imageUrl": "https://acme-outdoor.test/img/backpack.jpg"
+  },
+  {
+    "title": "Summit 2-Person Camping Tent",
+    "originalPrice": null,
+    "dealPrice": 5400,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "jsonld-shopify",
+    "productUrl": "https://acme-outdoor.test/products/summit-tent-2p",
+    "imageUrl": "https://acme-outdoor.test/img/tent.jpg"
+  }
+]

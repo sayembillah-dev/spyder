@@ -14,7 +14,9 @@ const KNOWN_SITES: Record<string, string> = {
 export function siteNameFromUrl(url: string): string {
   try {
     const host = new URL(url).hostname.replace(/^www\./, '');
-    if (KNOWN_SITES[host]) return KNOWN_SITES[host];
+    // exact match first, then subdomains (pages.daraz.com.bd → Daraz)
+    const known = Object.keys(KNOWN_SITES).find((d) => host === d || host.endsWith(`.${d}`));
+    if (known) return KNOWN_SITES[known]!;
     const base = host.split('.')[0] ?? host;
     return base.charAt(0).toUpperCase() + base.slice(1);
   } catch {

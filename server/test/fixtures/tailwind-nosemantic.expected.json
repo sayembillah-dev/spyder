@@ -1,0 +1,62 @@
+[
+  {
+    "title": "JBL Go 3 Portable Speaker",
+    "originalPrice": null,
+    "dealPrice": 3990,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/jbl-go-3-speaker",
+    "imageUrl": "https://cdn.nosemantic.test/p3.jpg"
+  },
+  {
+    "title": "SanDisk Ultra 128GB Pendrive",
+    "originalPrice": null,
+    "dealPrice": 1650,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/sandisk-pendrive-128gb",
+    "imageUrl": "https://cdn.nosemantic.test/p5.jpg"
+  },
+  {
+    "title": "Anker PowerCore 20000mAh Power Bank",
+    "originalPrice": 3200,
+    "dealPrice": 2450,
+    "discountPercentage": 23,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/anker-powercore-20000",
+    "imageUrl": "https://cdn.nosemantic.test/p1.jpg"
+  },
+  {
+    "title": "Xiaomi Mi Smart Band 8",
+    "originalPrice": 4200,
+    "dealPrice": 3499,
+    "discountPercentage": 17,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/xiaomi-mi-band-8",
+    "imageUrl": "https://cdn.nosemantic.test/p2.jpg"
+  },
+  {
+    "title": "Logitech M185 Wireless Mouse",
+    "originalPrice": 1450,
+    "dealPrice": 1150,
+    "discountPercentage": 21,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/logitech-m185-mouse",
+    "imageUrl": "https://cdn.nosemantic.test/p4.jpg"
+  },
+  {
+    "title": "Baseus 65W Car Charger",
+    "originalPrice": 1200,
+    "dealPrice": 890,
+    "discountPercentage": 26,
+    "currency": "BDT",
+    "sourceSite": "tailwind-nosemantic",
+    "productUrl": "https://tailwind-nosemantic.test/products/baseus-car-charger",
+    "imageUrl": "https://cdn.nosemantic.test/p6.jpg"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "title": "iPhone 15 Pro Max Silicone Case",
+    "originalPrice": 900,
+    "dealPrice": 450,
+    "discountPercentage": 50,
+    "currency": "BDT",
+    "sourceSite": "daraz-flash",
+    "productUrl": "https://www.daraz.test/products/i101.html",
+    "imageUrl": "https://img.daraz.test/1.jpg"
+  },
+  {
+    "title": "TWS Wireless Earbuds Pro ANC",
+    "originalPrice": 2599,
+    "dealPrice": 1299,
+    "discountPercentage": 50,
+    "currency": "BDT",
+    "sourceSite": "daraz-flash",
+    "productUrl": "https://www.daraz.test/products/i102.html",
+    "imageUrl": "https://img.daraz.test/2.jpg"
+  },
+  {
+    "title": "S9 Ultra Smart Watch Series 9",
+    "originalPrice": 3700,
+    "dealPrice": 1850,
+    "discountPercentage": 50,
+    "currency": "BDT",
+    "sourceSite": "daraz-flash",
+    "productUrl": "https://www.daraz.test/products/i103.html",
+    "imageUrl": "https://img.daraz.test/3.jpg"
+  }
+]

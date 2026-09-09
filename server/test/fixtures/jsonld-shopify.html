@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>ACME Outdoor — Summer Sale</title>
+  <!-- Phase 2 target: schema.org JSON-LD. Shopify/WooCommerce/Magento all
+       emit this; prices here are DECLARED, not inferred. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Product",
+          "name": "Trailblazer Hiking Backpack 40L",
+          "url": "https://acme-outdoor.test/products/trailblazer-40l",
+          "image": "https://acme-outdoor.test/img/backpack.jpg",
+          "brand": { "@type": "Brand", "name": "Trailblazer" },
+          "offers": {
+            "@type": "Offer",
+            "price": "2950.00",
+            "priceCurrency": "BDT",
+            "availability": "https://schema.org/InStock"
+          }
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Product",
+          "name": "Summit 2-Person Camping Tent",
+          "url": "https://acme-outdoor.test/products/summit-tent-2p",
+          "image": "https://acme-outdoor.test/img/tent.jpg",
+          "offers": {
+            "@type": "AggregateOffer",
+            "lowPrice": "5400",
+            "highPrice": "6200",
+            "priceCurrency": "BDT"
+          }
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Deliberately rendered with obfuscated class names that match NO card
+       selector: today this page extracts 0 products. -->
+  <main>
+    <h1>Summer Sale</h1>
+    <div class="x9f2a">
+      <div class="k71b"><span>Trailblazer Hiking Backpack 40L</span><span>৳2,950</span></div>
+      <div class="k71b"><span>Summit 2-Person Camping Tent</span><span>৳5,400</span></div>
+    </div>
+  </main>
+</body>
+</html>

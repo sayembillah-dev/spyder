@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Samsung Galaxy A07 (4/64GB)",
+    "originalPrice": null,
+    "dealPrice": 16399,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "othoba-hydrated",
+    "productUrl": "https://www.othoba.test/samsung-galaxy-a07",
+    "imageUrl": "https://www.othoba.test/img/a07.jpg"
+  },
+  {
+    "title": "Xiaomi TV A 43 Inch FHD Smart LED",
+    "originalPrice": 38500,
+    "dealPrice": 34999,
+    "discountPercentage": 9,
+    "currency": "BDT",
+    "sourceSite": "othoba-hydrated",
+    "productUrl": "https://www.othoba.test/xiaomi-tv-a43",
+    "imageUrl": "https://www.othoba.test/img/tv43.jpg"
+  },
+  {
+    "title": "Whirlpool Refrigerator 260 Litre",
+    "originalPrice": null,
+    "dealPrice": 42500,
+    "discountPercentage": null,
+    "currency": "BDT",
+    "sourceSite": "othoba-hydrated",
+    "productUrl": "https://www.othoba.test/whirlpool-fridge-260l",
+    "imageUrl": "https://www.othoba.test/img/fridge.jpg"
+  }
+]

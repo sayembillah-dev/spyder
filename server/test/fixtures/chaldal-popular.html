@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><title>Chaldal — Popular Products</title></head>
+<body>
+  <header><nav><a href="/">Home</a> <a href="/deals">Deals</a></nav></header>
+  <main>
+    <h1>Popular Products</h1>
+    <!-- outer container deliberately matches a card selector too: locks the
+         nested-selector / no-double-count behaviour -->
+    <div class="productPane">
+      <div class="productV2Catalog">
+        <a class="productV2Link" href="/product/fresh-guard-milk-1l">
+          <img src="https://cdn.chaldal.test/img/milk.jpg" alt="Fresh Guard Full Cream Milk 1L">
+        </a>
+        <div class="name">Fresh Guard Full Cream Milk 1L</div>
+        <div class="priceV2">
+          <span class="price">৳95</span>
+          <del class="old-price">৳110</del>
+        </div>
+      </div>
+      <div class="productV2Catalog">
+        <a class="productV2Link" href="/product/rupchanda-soybean-oil-5l">
+          <img src="https://cdn.chaldal.test/img/oil.jpg" alt="Rupchanda Soybean Oil 5L">
+        </a>
+        <div class="name">Rupchanda Soybean Oil 5L</div>
+        <div class="priceV2">
+          <span class="price">৳4,250</span>
+          <del class="old-price">৳4,750</del>
+        </div>
+      </div>
+      <div class="productV2Catalog">
+        <a class="productV2Link" href="/product/miniket-rice-5kg">
+          <img src="https://cdn.chaldal.test/img/rice.jpg" alt="Miniket Rice 5kg">
+        </a>
+        <div class="name">Premium Miniket Rice 5 kg</div>
+        <div class="priceV2">
+          <span class="price">৳420</span>
+        </div>
+      </div>
+      <div class="productV2Catalog">
+        <a class="productV2Link" href="/product/dettol-soap-100g">
+          <img src="https://cdn.chaldal.test/img/soap.jpg" alt="Dettol Soap 100g">
+        </a>
+        <div class="name">Dettol Original Soap 100 gm</div>
+        <div class="priceV2">
+          <span class="price">৳৫৫</span>
+          <del class="old-price">৳৬৫</del>
+        </div>
+      </div>
+    </div>
+    <nav class="pagination" aria-label="pagination">
+      <span class="page current">1</span>
+      <a class="page" href="/popular?page=2">2</a>
+      <a rel="next" href="/popular?page=2">Next ›</a>
+    </nav>
+  </main>
+</body>
+</html>
