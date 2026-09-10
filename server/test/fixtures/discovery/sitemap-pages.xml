@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://shop.example.com/</loc>
+    <lastmod>2026-09-08T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/deals</loc>
+    <lastmod>2026-09-07T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/offers/weekly</loc>
+    <lastmod>2026-09-06T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/blog/best-deals-2024</loc>
+    <lastmod>2024-03-01T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/wholesale</loc>
+  </url>
+  <url>
+    <loc>https://shop.example.com/flash-sale?utm_source=newsletter&amp;ref=email</loc>
+    <lastmod>2026-09-08T12:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/products/leather-wallet-1001</loc>
+    <lastmod>2026-08-01T00:00:00+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://shop.example.com/help/faq</loc>
+  </url>
+</urlset>

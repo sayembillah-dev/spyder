@@ -35,8 +35,10 @@ export class HostRateLimiter {
     return this.held.run(new Set(current).add(host), fn);
   }
 
-  /** Wait for this host's turn, then a jittered quiet period. */
-  async waitTurn(host: string): Promise<void> {
+  /** Wait for this host's turn, then a jittered quiet period.
+   *  `delayMs` overrides the gap window (discovery uses a cheaper delay —
+   *  single GETs, not sustained crawls; D5.3). */
+  async waitTurn(host: string, delayMs?: { min: number; max: number }): Promise<void> {
     if (this.holdsHost(host)) return; // already serialized by an ancestor call
     const prev = this.tails.get(host) ?? Promise.resolve();
     let release!: () => void;
@@ -46,7 +48,7 @@ export class HostRateLimiter {
     this.tails.set(host, prev.then(() => mine));
 
     await prev; // serialize: one in flight per host
-    await this.gap(host);
+    await this.gap(host, delayMs);
     release();
   }
 
@@ -73,10 +75,12 @@ export class HostRateLimiter {
   }
 
   /** Jittered inter-request spacing since this host's last job start. */
-  private async gap(host: string): Promise<void> {
+  private async gap(host: string, delayMs?: { min: number; max: number }): Promise<void> {
     const since = Date.now() - (this.lastStart.get(host) ?? 0);
     const { minDelayMs, maxDelayMs } = config.net;
-    const want = minDelayMs + Math.floor(Math.random() * Math.max(0, maxDelayMs - minDelayMs));
+    const min = delayMs?.min ?? minDelayMs;
+    const max = delayMs?.max ?? maxDelayMs;
+    const want = min + Math.floor(Math.random() * Math.max(0, max - min));
     const wait = want - since;
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
     this.lastStart.set(host, Date.now());

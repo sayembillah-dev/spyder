@@ -654,3 +654,86 @@ export async function scrapeCsrSite(
   if (lastFailure) throw new Error(lastFailure);
   return [];
 }
+
+/**
+ * Discovery's Tier-4 hook (D3): a homepage that was an SPA shell over HTTP
+ * gets ONE real render — the HTML the client-side app actually mounts,
+ * plus the JSON API URLs it hit on the way (a campaign endpoint on the
+ * wire outranks every keyword guess; the orchestrator scores them as
+ * source 'network').
+ *
+ * NOT a scrape: no accumulation, no pagination drain — render, settle,
+ * read, close. Reuses the ONE shared browser with a fresh context (same
+ * isolation as a fresh browser, a fraction of the cost), and the same
+ * network-layer SSRF guard every browser path gets.
+ */
+export async function renderPageForDiscovery(
+  url: string,
+  signal?: AbortSignal,
+): Promise<{ html: string; seenApiUrls: string[] } | null> {
+  await assertPublicUrl(url); // never launch a browser at a non-public target
+  throwIfAborted(signal);
+
+  const device = devices[
+    DESKTOP_DEVICE_POOL[Math.floor(Math.random() * DESKTOP_DEVICE_POOL.length)]!
+  ]!;
+  const browser = await sharedBrowser();
+  const context = await browser.newContext({ ...device });
+  const closeOnAbort = () => {
+    void context.close().catch(() => undefined);
+  };
+  signal?.addEventListener('abort', closeOnAbort, { once: true });
+
+  const seenApiUrls: string[] = [];
+  try {
+    const page = await context.newPage();
+    page.setDefaultNavigationTimeout(NAV_TIMEOUT_MS);
+    page.setDefaultTimeout(HANDLER_TIMEOUT_MS);
+
+    // SSRF guard at the network layer: a public page must not pivot the
+    // browser into the internal network.
+    await page.route('**/*', async (route) => {
+      if (await isAllowedBrowserRequest(route.request().url())) {
+        return route.continue();
+      }
+      return route.abort('blockedbyclient');
+    });
+    // Fonts & media are pure bandwidth; images must load (banner alt text
+    // is a harvest source).
+    await page.route('**/*.{woff,woff2,ttf,otf,eot,mp4,webm,mp3,wav}', (route) =>
+      route.abort(),
+    );
+
+    page.on('response', (res) => {
+      try {
+        if (res.request().resourceType() === 'document') return;
+        const ct = res.headers()['content-type'] ?? '';
+        if (!ct.includes('json') || !res.ok()) return;
+        if (seenApiUrls.length < 25 && !seenApiUrls.includes(res.url())) {
+          seenApiUrls.push(res.url());
+        }
+      } catch {
+        /* headers gone mid-flight — skip */
+      }
+    });
+
+    try {
+      await page.goto(url, { waitUntil: 'domcontentloaded' });
+    } catch {
+      // A nav timeout still leaves whatever the app already mounted —
+      // Tier 4 harvests partial DOMs rather than nothing.
+    }
+    throwIfAborted(signal);
+    await dismissOverlays(page);
+    await waitForDomSettle(page);
+    await autoScroll(page, 2); // wake lazy mega-menus / hero carousels
+
+    return { html: await page.content(), seenApiUrls };
+  } catch (e) {
+    if (e instanceof AbortedError || signal?.aborted) throw new AbortedError();
+    return null; // a failed render degrades Tier 4 to the cheap tiers' yield
+  } finally {
+    signal?.removeEventListener('abort', closeOnAbort);
+    await context.close().catch(() => undefined);
+  }
+}

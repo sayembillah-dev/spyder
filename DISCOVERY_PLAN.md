@@ -68,28 +68,28 @@ These extend, and never override, the constraints in SCRAPER_PLAN.
 
 | # | Item | Phase | Effort | Status |
 |---|---|---|---|---|
-| 1 | Discovery types + fixture harness | D0 | 4h | ☐ |
-| 2 | Registrable-domain (eTLD+1) same-site guard | D1 | 4h | ☐ |
-| 3 | URL canonicalization + dedupe | D1 | 3h | ☐ |
-| 4 | Keyword lexicon (weighted, multilingual, seasonal) | D2 | 5h | ☐ |
-| 5 | Candidate scoring function (pure) | D2 | 5h | ☐ |
-| 6 | Source: link harvest (nav / hero / footer) | D3 | 1d | ☐ |
-| 7 | Source: sitemap (index recursion, gz, caps) | D3 | 6h | ☐ |
-| 8 | Platform fingerprint + probe packs | D3 | 6h | ☐ |
-| 9 | Source: browser-assisted harvest (CSR homepages) | D3 | 5h | ☐ |
-| 10 | Verification pass + deal-density metric | D4 | 1d | ☐ |
-| 11 | Product-set fingerprint dedupe | D4 | 3h | ☐ |
-| 12 | Frontier + budget orchestrator | D5 | 1d | ☐ |
-| 13 | **Deal-URL registry — durable saved list** | D6 | 1d | ☐ |
-| 14 | Registry lifecycle state machine + health stats | D6 | 6h | ☐ |
-| 15 | Per-host discovery memo (short TTL) | D6 | 4h | ☐ |
-| 16 | API / SSE / types wiring | D7 | 5h | ☐ |
-| 17 | Registry API (CRUD, pin/exclude, export/import) | D7 | 5h | ☐ |
-| 18 | Client: domain input + discovery panel | D8 | 1d | ☐ |
-| 19 | Client: Saved Pages view | D8 | 5h | ☐ |
-| 20 | Graceful degradation (no dedicated deal page) | D9 | 5h | ☐ |
-| 21 | **Autonomous refresh scheduler (auto-fetch loop)** | D10 | 1d | ☐ |
-| 22 | Adaptive per-page refresh cadence | D10 | 4h | ☐ |
+| 1 | Discovery types + fixture harness | D0 | 4h | ✅ types / fixtures land with D3 |
+| 2 | Registrable-domain (eTLD+1) same-site guard | D1 | 4h | ✅ |
+| 3 | URL canonicalization + dedupe | D1 | 3h | ✅ |
+| 4 | Keyword lexicon (weighted, multilingual, seasonal) | D2 | 5h | ✅ |
+| 5 | Candidate scoring function (pure) | D2 | 5h | ✅ |
+| 6 | Source: link harvest (nav / hero / footer) | D3 | 1d | ✅ |
+| 7 | Source: sitemap (index recursion, gz, caps) | D3 | 6h | ✅ |
+| 8 | Platform fingerprint + probe packs | D3 | 6h | ✅ |
+| 9 | Source: browser-assisted harvest (CSR homepages) | D3 | 5h | ✅ production wired (renderPageForDiscovery) |
+| 10 | Verification pass + deal-density metric | D4 | 1d | ✅ |
+| 11 | Product-set fingerprint dedupe | D4 | 3h | ✅ |
+| 12 | Frontier + budget orchestrator | D5 | 1d | ✅ |
+| 13 | **Deal-URL registry — durable saved list** | D6 | 1d | ✅ atomic tmp+rename writes, .bak, flush on SIGTERM |
+| 14 | Registry lifecycle state machine + health stats | D6 | 6h | ✅ EWMA α=0.3, parked w/ seasonal revisit, pinned/excluded are user facts |
+| 15 | Per-host discovery memo (short TTL) | D6 | 4h | ✅ 12h TTL warm start; >half survivors ⇒ skip discovery (fromMemo) |
+| 16 | API / SSE / types wiring | D7 | 5h | ✅ targets+discovery opts, saved-list mode, 'discovery' SSE event, discovering/verifying phases |
+| 17 | Registry API (CRUD, pin/exclude, export/import) | D7 | 5h | ✅ /api/registry incl. verified manual adds, refresh, export/import |
+| 18 | Client: domain input + discovery panel | D8 | 1d | ✅ bare-domain input, panel w/ score+source chip+evidence+verdict, 'N rejected — why?', pin/exclude → include/exclude, discovering/verifying spinners |
+| 19 | Client: Saved Pages view | D8 | 5h | ✅ grouped table, row actions, 'Scrape my list' (targets: []), verified add-by-hand, export/import, parked 'waking Nov 2026' |
+| 20 | Graceful degradation (no dedicated deal page) | D9 | 5h | ✅ fallback ladder (verify ≤3 category listings, keep density≥0.15), discounted-only post-filter, 'fallback:category-listing' evidence + UI line |
+| 21 | **Autonomous refresh scheduler (auto-fetch loop)** | D10 | 1d | ✅ single timer, non-overlapping, 1/domain/tick, blocked→backoff, burst-pause, SIGTERM unwind, OFF by default |
+| 22 | Adaptive per-page refresh cadence | D10 | 4h | ✅ changeRate/density-driven interval clamped [1h,7d], ±15% jitter (formula calibrated — plan's literal sketch was impossible) |
 
 Rough total: **~12 working days**. **D0–D4 (~5 days) is the whole idea working
 end to end**; D5–D9 make it fast, legible and repeatable; **D6 + D10 are what
@@ -1219,3 +1219,21 @@ Stated so they don't creep in:
 - Duplicate listings are collapsed before the expensive scrape, not after
 - Every knob is in `config.discovery` and documented in `.env.example`; no
   `process.env` read outside `config.ts`
+
+### Final audit — 2026-09-10 ✅
+
+All items verified, 25 test files / 253 tests green, server+client `tsc` clean:
+
+- `discovery/` has zero hostname branches; `KNOWN_SITES` (cosmetic display
+  names) untouched since the first commit
+- `test/discoveryPrecision.test.ts` makes precision@5 explicit: a 3-platform
+  corpus (Shopify / WooCommerce / Bangla marketplace) with zero-discount
+  "deal-named" traps scores **1.00 per site** with full recall; a scoring or
+  verification regression drags it under 0.8
+- Every `process.env` read is in `config.ts`; every knob appears in
+  `.env.example` (optional ones commented with docs)
+- Tier 4 is production-wired: `renderPageForDiscovery` in `csrScraper.ts`
+  (shared browser, fresh context, network-layer SSRF, JSON endpoint capture,
+  null-on-failure) feeds `DiscoveryHooks.renderPage`
+- SIGTERM → `scheduler.stop()` (aborts + awaits the in-flight tick) →
+  `flushRegistry()` → exit; atomic-write + mid-tick-stop tests cover validity

@@ -1,4 +1,13 @@
-import { AlertTriangle, CheckCircle2, Loader2, Search, ShieldAlert, Zap } from 'lucide-react';
+import {
+  AlertTriangle,
+  CheckCircle2,
+  FlaskConical,
+  Loader2,
+  Radar,
+  Search,
+  ShieldAlert,
+  Zap,
+} from 'lucide-react';
 import type { SiteStatusEvent } from '../types';
 
 interface Props {
@@ -72,8 +81,9 @@ export function StatusFeed({ statuses }: Props) {
 /**
  * Green/amber/red extraction-confidence dot; the tooltip carries the "why":
  * e.g. "42 products, many missing product links — low confidence (31%)".
+ * Exported: the Discovery panel and Saved Pages view reuse it for dealDensity.
  */
-function ConfidenceDot({
+export function ConfidenceDot({
   score,
   flags,
   count,
@@ -123,6 +133,10 @@ function PhaseIcon({
       ) : (
         <Zap className={`${cls} animate-pulse text-amber-400`} />
       );
+    case 'discovering':
+      return <Radar className={`${cls} animate-pulse text-sky-400`} />;
+    case 'verifying':
+      return <FlaskConical className={`${cls} animate-pulse text-amber-400`} />;
     default:
       return <Search className={`${cls} animate-pulse text-sky-400`} />;
   }

@@ -12,12 +12,15 @@ import { hostRateLimiter } from './rateLimit';
 interface RobotsRules {
   disallow: string[];
   allow: string[];
+  /** Sitemap: directives — the authoritative sitemap location (D3 Tier 0;
+   *  zero extra network cost since robots.txt is fetched anyway). */
+  sitemaps: string[];
 }
 
 const cache = new Map<string, RobotsRules | null>(); // null = no robots / unreachable
 
 function parse(body: string): RobotsRules {
-  const rules: RobotsRules = { disallow: [], allow: [] };
+  const rules: RobotsRules = { disallow: [], allow: [], sitemaps: [] };
   let inStarGroup = false;
   let seenGroup = false;
   for (const rawLine of body.split('\n')) {
@@ -35,6 +38,11 @@ function parse(body: string): RobotsRules {
       } else if (inStarGroup && value !== '*') {
         inStarGroup = false; // a named group follows — no longer ours
       }
+      continue;
+    }
+    // Sitemap: lines are group-independent (they sit outside agent groups).
+    if (f === 'sitemap' && value) {
+      rules.sitemaps.push(value);
       continue;
     }
     if (!inStarGroup) continue;
@@ -57,6 +65,11 @@ async function rulesFor(origin: string): Promise<RobotsRules | null> {
   }
   cache.set(origin, rules);
   return rules;
+}
+
+/** Sitemap: URLs declared by this origin's robots.txt ([] when none). */
+export async function sitemapsFromRobots(origin: string): Promise<string[]> {
+  return (await rulesFor(origin))?.sitemaps ?? [];
 }
 
 /** Longest-prefix-match Allow wins over Disallow, per RFC 9309. */
